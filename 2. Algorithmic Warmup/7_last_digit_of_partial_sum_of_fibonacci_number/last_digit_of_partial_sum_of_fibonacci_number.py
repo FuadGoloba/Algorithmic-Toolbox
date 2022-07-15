@@ -17,8 +17,7 @@ def last_digit_of_partial_sum_of_fibonacci_numbers_naive(start, end):
     fib[1] = 1
     for i in range(2, end + 1): # Compute all Fibonacci numbers up to end and store in list
         fib[i] = fib[i - 1] + fib[i - 2]
-    #print(sum(fib))
-    #print(fib[-1])
+
     return sum(fib[start:]) % 10 # Compute the sum of fibonacci numbers from start to end and return the last digit
 
 

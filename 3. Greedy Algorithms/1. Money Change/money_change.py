@@ -12,6 +12,7 @@ def money_change(money):
     assert 0 <= money <= 10 ** 3
 
     num_of_coins = 0
+    # While the change isn't 0, keep taking a coin with the largest denomination that does not exceed money, subtract it's value from money and increment the count of coins
     while money > 0:
         if money >= 10:
             money -= 10

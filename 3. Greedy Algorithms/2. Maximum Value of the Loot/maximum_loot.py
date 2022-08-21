@@ -2,6 +2,8 @@
 # Input: The capacity of a backpack W as well as the weights (w1; : : : ;wn) and prices (p1; : : : ;pn) of n different compounds.
 # Output: The maximum total price of items that fit into the backpack of the given capacity: i.e., the maximum value of p1f1w1+  +pnfn wn such that u1 +    + un  W and 0  fi  1 for all i (fi is the fraction of the i-th item taken to the backpack).
 
+from sys import stdin
+
 def maximum_loot_value(capacity, weights, prices):
     """
         capacity : Capacity of backpack -> float
@@ -39,10 +41,6 @@ def maximum_loot_value(capacity, weights, prices):
     return total_loot
 
 if __name__ == '__main__':
-
-    #capacity = 50
-    #weights = [20, 50, 30]
-    #prices = [60, 100, 120]
 
     x = input("Enter Capacity of backpack :")
     y = input("Enter each weight of items :")

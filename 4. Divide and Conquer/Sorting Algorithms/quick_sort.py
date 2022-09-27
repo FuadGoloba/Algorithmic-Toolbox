@@ -1,3 +1,5 @@
+from random import randint
+
 def quicksort(array, left_ptr, right_ptr):
 
     # Base case; if there's only one element in the array, we return the array
@@ -29,11 +31,65 @@ def partition(array, left_ptr, right_ptr):
     array[left_ptr], array[partition_ptr] = array[partition_ptr], array[left_ptr]
     return (partition_ptr)
 
+
+# --------------------------------------------Randomized QUICK SORT 3 WAY ----------------------------------------------------------------------------#
+
+def partition_3_way(arr, left_ptr, right_ptr):
+
+    # Idea - We will traverse the array and at an index with an element less than the pivot, we swap this element and the pivot and increment the lt ptr, and move to the next index
+    # If we are at an index with an element equal to the pivot, we do nothing and move to the next index
+    # If we are at an index with an element greater than the pivot, then we swap this element with the gt ptr and decrement gt ptr to move to the element before it
+    # We do this until only when our current index is greater than gt ptr (i.e when we know we have all larger elements to the right)
+
+    pivot = arr[left_ptr] # Pivot element is the first element of the array
+    lt = left_ptr   # Initialise a less than pointer to start of the array
+    gt = right_ptr # Initialise a greater than pointer at the last element of the array
+    idx = lt + 1 # index pointer to traverse the array
+
+    while idx <= gt:
+        # Check for elements less than the pivot and swap
+        if arr[idx] < pivot:
+            arr[idx], arr[lt] = arr[lt], arr[idx]
+            lt += 1
+            idx += 1
+
+        # Check for elements greater than the pivot and swap
+        elif arr[idx] > pivot:
+            arr[idx], arr[gt] = arr[gt], arr[idx]
+            gt -= 1
+
+        # Check for elements equal to the pivot and move to the next pointer
+        else:
+            idx += 1
+
+    return lt, gt
+
+def randomized_quicksort_3_way(arr, left_ptr, right_ptr):
+
+    if left_ptr >= right_ptr:
+        return arr
+
+    # Randomize the selection of pivot 
+    random_element = randint(left_ptr, right_ptr)
+
+    # Swap random element with left ptr
+    arr[left_ptr], arr[random_element] = arr[random_element], arr[left_ptr]
+
+    # Partition array to get elements less than pivot and elements greater than pivot
+    lt, gt = partition_3_way(arr, left_ptr, right_ptr)
+
+    # Recurse the halves of the array
+    randomized_quicksort_3_way(arr, left_ptr, lt -1)
+    randomized_quicksort_3_way(arr, gt + 1, right_ptr)
+    
+
+
 if __name__ == '__main__':
     input_n = int(input())
     elements = list(map(int, input().split()))
     assert len(elements) == input_n
-    quicksort(elements, 0, len(elements) - 1)
-    print(elements)
+    randomized_quicksort_3_way(elements, 0, len(elements) - 1)
+    print(*elements)
 
 
+                                             

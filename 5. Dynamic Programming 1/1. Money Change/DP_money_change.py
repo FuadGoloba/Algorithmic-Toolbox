@@ -32,14 +32,15 @@ def DPmoneyChange(money, coins):
         for coin in coins:
             if m >= coin:
                 NumCoins = MinNumCoins[m - coin] + 1
-                if NumCoins < MinNumCoins[m]:
-                    MinNumCoins[m] = NumCoins
+                MinNumCoins[m] = min(NumCoins, MinNumCoins[m])
+                        # OR
+                # if NumCoins < MinNumCoins[m]:
+                #     MinNumCoins[m] = NumCoins
+                
 
     return MinNumCoins[money]
 
 if __name__ == '__main__':                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
     input_money = int(input())
     input_coins = list(map(int,input().split()))
-
-
     print(DPmoneyChange(input_money, input_coins))

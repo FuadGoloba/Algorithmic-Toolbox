@@ -9,7 +9,7 @@
 def DPprimitiveCalculator(number):
     '''
         Recursively with the help of memoization, the minimum number of operations can be calculated thus; 
-            min_ops(n) = minimum( min_ops(n-1) + 1, min_ops(n//2) + 2 , min_ops(n//3) + 3 )
+            min_ops(n) = minimum( min_ops(n-1) + 1, min_ops(n//2) , min_ops(n//3) )
             
         But then since Dynamic Programming approach aims to optimise recursive solutions, We can choose to solve the problem bottom up (i.e solving from 1 to n) => O(n)
         We know that min_ops(1) = 0; min_ops(2) = 1,; min_ops(3) = 1; Therefore we can use these to compute the min_ops(n) such that n > 3
